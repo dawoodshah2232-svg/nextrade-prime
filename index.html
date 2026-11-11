@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXTRADE PRIME — Trade. Prove It. Get Funded.</title>
+<meta name="description" content="NEXTRADE PRIME — a prop trading firm. Pass the challenge, trade up to $200,000 of firm capital, keep 80% of the profit. Three routes: 2-Step, 1-Step and Instant Funding. No time limit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/logo-light.png">
+</head>
+<body>
+<!-- Shared SVG gradient defs for the 3D gold icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4DC8A"/><stop offset=".5" stop-color="#C9A227"/><stop offset="1" stop-color="#8A6D14"/></linearGradient>
+<linearGradient id="gGold2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8C766"/><stop offset="1" stop-color="#9A7B1A"/></linearGradient>
+<radialGradient id="gGlow" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#F4DC8A" stop-opacity=".55"/><stop offset="1" stop-color="#C9A227" stop-opacity="0"/></radialGradient>
+</defs></svg>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="NEXTRADE PRIME — home">
+      <!-- logo-light: header is dark navy -->
+      <img src="assets/logo-light.png" alt="NEXTRADE PRIME" height="42">
+    </a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main">
+      <a href="challenges.html">Challenges</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="index.html#platforms">Platforms</a>
+      <a href="challenges.html#rules">Rules</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-ghost btn-sm" href="login.html">Login</a>
+      <a class="btn btn-gold btn-sm shimmer" href="challenges.html">Get Funded</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div>
+      <span class="demo-pill">PROP TRADING &nbsp;·&nbsp; UP TO $200,000 FIRM CAPITAL</span>
+      <h1>Trade. Prove It.<br><span class="gold">Get Funded.</span></h1>
+      <p class="lead">Pass the challenge, trade our capital, and keep <strong style="color:#fff">80% of the profit</strong>. Three routes to funding, no time limit, and payouts built for serious traders.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold btn-lg shimmer" href="challenges.html">Start Your Challenge →</a>
+        <a class="btn btn-ghost btn-lg" href="index.html#how-it-works">How It Works</a>
+      </div>
+      <div class="hero-proof">
+        <div><b>3</b>Funding routes</div>
+        <div><b>80%</b>Profit split</div>
+        <div><b>1:100</b>Max leverage</div>
+        <div><b>$200k</b>Max account</div>
+      </div>
+    </div>
+    <div class="hero-card tilt">
+      <span class="hero-badge">LIVE CHART · XAUUSD</span>
+      <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1200&q=80&auto=format&fit=crop" alt="Trader watching live gold charts on multiple screens" loading="lazy">
+      <div class="chart-wrap">
+        <div class="chart-head"><span>XAUUSD · 15m · Challenge Phase 1</span><b>▲ +4.32%</b></div>
+        <canvas id="heroChart" aria-label="Animated candlestick chart"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="ticker" aria-label="Indicative market prices — demo feed">
+    <div class="ticker-track"></div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats-band">
+  <div class="container stats-grid">
+    <div class="stat reveal"><b><span data-count="200" data-suffix="k">$0</span></b><span>Maximum funded account</span></div>
+    <div class="stat reveal" data-delay="1"><b><span data-count="80" data-suffix="%">0%</span></b><span>Profit split to the trader</span></div>
+    <div class="stat reveal" data-delay="2"><b><span data-count="5" data-suffix="">0</span></b><span>Account sizes, $10k – $200k</span></div>
+    <div class="stat reveal" data-delay="3"><b><span data-count="24" data-suffix="/7">0</span></b><span>Support, whenever markets move</span></div>
+  </div>
+</section>
+
+<!-- ============ THREE ROUTES ============ -->
+<section class="section" id="routes">
+  <div class="container">
+    <div class="center reveal">
+      <div class="gold-rule"></div>
+      <h2 class="section-title">Three Routes. One Goal.</h2>
+      <p class="section-sub">Pick the path that fits your style. Every route ends at the same place — a funded NEXTRADE PRIME account.</p>
+    </div>
+    <div class="routes-grid">
+      <article class="route-card tilt reveal" data-route="two-step">
+        <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><circle cx="40" cy="40" r="30" stroke="url(#gGold)" stroke-width="2.5"/><circle cx="40" cy="40" r="19" stroke="url(#gGold)" stroke-width="2.5"/><circle cx="40" cy="40" r="8" stroke="url(#gGold)" stroke-width="2.5"/><circle cx="40" cy="40" r="3" fill="url(#gGold)"/></svg></div>
+        <h3>2-Step Challenge</h3>
+        <p class="muted">The classic path. Prove consistency across two phases, then trade firm capital.</p>
+        <div class="size-pills">
+          <button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="200000">$200k</button>
+        </div>
+        <div class="route-price"><span class="js-price">$349</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <ul class="route-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Phase 1 target <b>&nbsp;<span class="js-target1">7%</span></b>&nbsp;· Phase 2 <b>&nbsp;<span class="js-target2">5%</span></b></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">5%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:100</span></b>&nbsp;· No time limit</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>80% profit split, from day one funded</li>
+        </ul>
+        <a class="btn btn-gold" href="challenges.html">Choose 2-Step →</a>
+      </article>
+      <article class="route-card tilt featured reveal" data-route="one-step" data-delay="1">
+        <span class="route-tag">MOST POPULAR</span>
+        <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M44 8L20 44h14l-4 28 26-38H42l2-26z" fill="url(#gGold)" stroke="#8A6D14" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3>1-Step Challenge</h3>
+        <p class="muted">One phase, one target. The fastest way from evaluation to a funded account.</p>
+        <div class="size-pills">
+          <button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="200000">$200k</button>
+        </div>
+        <div class="route-price"><span class="js-price">$399</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <ul class="route-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Single target <b>&nbsp;<span class="js-target1">8%</span></b>&nbsp;· One phase only</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">4%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:50</span></b>&nbsp;· No time limit</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>80% profit split, from day one funded</li>
+        </ul>
+        <a class="btn btn-gold" href="challenges.html">Choose 1-Step →</a>
+      </article>
+      <article class="route-card tilt reveal" data-route="instant" data-delay="2">
+        <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M40 12l6 14 15 2-11 11 3 15-13-8-13 8 3-15L19 28l15-2 6-14z" fill="url(#gGold)" stroke="#8A6D14" stroke-width="1.5" stroke-linejoin="round"/><path d="M22 62h36" stroke="url(#gGold)" stroke-width="3" stroke-linecap="round"/></svg></div>
+        <h3>Instant Funding</h3>
+        <p class="muted">Skip the evaluation. Start trading a funded account on day one and grow it.</p>
+        <div class="size-pills">
+          <button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="200000">$200k</button>
+        </div>
+        <div class="route-price"><span class="js-price">$599</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <ul class="route-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Growth target <b>&nbsp;<span class="js-target1">8% growth target</span></b>&nbsp;to scale up</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">4%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:30</span></b>&nbsp;· No time limit</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>80% profit split, from day one funded</li>
+        </ul>
+        <a class="btn btn-gold" href="challenges.html">Choose Instant →</a>
+      </article>
+    </div>
+    <p class="center muted small" style="margin-top:26px">Prices are the demo defaults — every price lives in one config object at the top of <code>assets/script.js</code> (PRICING).</p>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="how-it-works" style="background:var(--navy-900)">
+  <div class="container">
+    <div class="center reveal">
+      <div class="gold-rule"></div>
+      <h2 class="section-title">From Sign-Up to Funded in Four Steps</h2>
+      <p class="section-sub">No interviews. No hidden rules. Your trading does the talking.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M40 16l4 12 12 1-9 8 3 13-10-7-10 7 3-13-9-8 12-1 4-12z" fill="url(#gGold)"/></svg></div>
+        <h3>Choose your route</h3><p>Pick 2-Step, 1-Step or Instant Funding, then your account size — $10k to $200k.</p>
+      </div>
+      <div class="step reveal" data-delay="1">
+        <span class="step-num">02</span>
+        <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M16 58l12-14 10 8 22-26" stroke="url(#gGold)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M52 26h8v8" stroke="url(#gGold)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Pass the target</h3><p>Hit the profit target inside the loss limits. No time limit — trade at your own pace.</p>
+      </div>
+      <div class="step reveal" data-delay="2">
+        <span class="step-num">03</span>
+        <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M40 18v44M52 28H32l-4 12h24l-4 12H28" stroke="url(#gGold)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
+        <h3>Get funded</h3><p>Your funded account is issued and your dashboard goes live. Same rules, real capital.</p>
+      </div>
+      <div class="step reveal" data-delay="3">
+        <span class="step-num">04</span>
+        <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><rect x="18" y="26" width="44" height="30" rx="5" stroke="url(#gGold)" stroke-width="3.5"/><path d="M18 36h44M28 48h10" stroke="url(#gGold)" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+        <h3>Keep 80%</h3><p>Request a payout from your dashboard. You keep 80% of the profit you make.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY NEXTRADE ============ -->
+<section class="section">
+  <div class="container split">
+    <div class="img-frame reveal">
+      <img class="ph" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80&auto=format&fit=crop" alt="City skyline at dusk — the markets never sleep" loading="lazy">
+    </div>
+    <div class="reveal" data-delay="1">
+      <div class="gold-rule"></div>
+      <h2 class="section-title">Built for Traders Who Actually Trade</h2>
+      <p class="section-sub">No gimmicks, no impossible rules. Clear limits, honest dashboards, and support that answers.</p>
+      <ul class="check-list">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>No time limit</strong> — take a day or take a month. The target waits for you.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Trade your way</strong> — news trading, EAs and scalping allowed within the loss rules.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Live dashboard</strong> — balance, drawdown and payout status, updated as you trade.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>One-time fee</strong> — no monthly subscription, no hidden charges.</span></li>
+      </ul>
+      <a class="btn btn-gold" href="challenges.html">See All Challenges →</a>
+    </div>
+  </div>
+  <div class="container features-grid">
+    <div class="feature reveal">
+      <div class="icon3d sm"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M40 14v52M40 22l-14 8v24l14 8 14-8V30l-14-8z" stroke="url(#gGold)" stroke-width="3.5" stroke-linejoin="round"/><path d="M26 30l14 8 14-8M40 38v24" stroke="url(#gGold)" stroke-width="3" stroke-linejoin="round"/></svg></div>
+      <div><h3>Real risk rules</h3><p>Daily and maximum loss limits are published on every card. What you see is what is enforced.</p></div>
+    </div>
+    <div class="feature reveal" data-delay="1">
+      <div class="icon3d sm"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M40 16l24 10v18c0 14-10 24-24 28-14-4-24-14-24-28V26l24-10z" stroke="url(#gGold)" stroke-width="3.5" stroke-linejoin="round"/><path d="M32 40l6 6 12-13" stroke="url(#gGold)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h3>Capital protected</h3><p>Drawdown meters and loss limits protect the account — and teach the discipline that keeps traders funded.</p></div>
+    </div>
+    <div class="feature reveal" data-delay="2">
+      <div class="icon3d sm"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><circle cx="40" cy="40" r="24" stroke="url(#gGold)" stroke-width="3.5"/><path d="M16 40h48M40 16c-8 8-8 40 0 48M40 16c8 8 8 40 0 48" stroke="url(#gGold)" stroke-width="2.5"/></svg></div>
+      <div><h3>Every market</h3><p>Forex, gold, indices, oil and crypto — trade the markets you know, on the platforms you trust.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATFORMS ============ -->
+<section class="section" id="platforms" style="background:var(--navy-900)">
+  <div class="container">
+    <div class="center reveal">
+      <div class="gold-rule"></div>
+      <h2 class="section-title">Trade on the Platforms You Already Know</h2>
+      <p class="section-sub">Your challenge and funded accounts run on professional trading platforms — desktop, web and mobile.</p>
+    </div>
+    <div class="platforms">
+      <article class="platform reveal">
+        <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=1200&q=80&auto=format&fit=crop" alt="MetaTrader 5 charts on screen" loading="lazy">
+        <div class="platform-body"><span class="platform-tag">MT5 · MOST POPULAR</span><h3>MetaTrader 5</h3><p>The industry standard. Advanced charting, EAs, depth of market and one-click trading on every device.</p></div>
+      </article>
+      <article class="platform reveal" data-delay="1">
+        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1200&q=80&auto=format&fit=crop" alt="cTrader-style trading charts" loading="lazy">
+        <div class="platform-body"><span class="platform-tag">CTRADER</span><h3>cTrader</h3><p>Clean, fast execution with level-II pricing and a modern interface built for active traders.</p></div>
+      </article>
+      <article class="platform reveal" data-delay="2">
+        <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?w=1200&q=80&auto=format&fit=crop" alt="Trader analysing charts on a laptop" loading="lazy">
+        <div class="platform-body"><span class="platform-tag">WEB + MOBILE</span><h3>TradingView Charts</h3><p>Chart, plan and analyse with TradingView-grade tools, then execute on your chosen platform.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="center reveal">
+      <div class="gold-rule"></div>
+      <h2 class="section-title">Questions, Answered</h2>
+      <p class="section-sub">Straight answers — no fine-print games.</p>
+    </div>
+    <div class="faq">
+      <div class="faq-item reveal"><button class="faq-q">What is a prop trading challenge?<span class="chev">⌄</span></button><div class="faq-a"><p>A challenge is an evaluation: you trade a simulated account and hit a profit target without breaking the daily and maximum loss limits. Pass it, and you trade a funded account with firm capital and keep 80% of the profit.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Is there a time limit?<span class="chev">⌄</span></button><div class="faq-a"><p>No. All three routes — 2-Step, 1-Step and Instant Funding — have no time limit. Take the time your strategy needs.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">What is the profit split?<span class="chev">⌄</span></button><div class="faq-a"><p>80% of the profit goes to you on every funded account, on every route. Payouts are requested from your trader dashboard.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Can I trade news, EAs or scalping?<span class="chev">⌄</span></button><div class="faq-a"><p>Yes — news trading, expert advisors and scalping are allowed, as long as you stay inside the daily and maximum loss limits published on your challenge card.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">What happens if I break a rule?<span class="chev">⌄</span></button><div class="faq-a"><p>Breaching the daily loss limit or the maximum loss limit ends that challenge attempt. You can start a new challenge at any time.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">How do payouts work?<span class="chev">⌄</span></button><div class="faq-a"><p>Once funded, request a payout from your dashboard. Payout methods and timing are confirmed in your account area — this demo site shows the dashboard layout only.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1600&q=80&auto=format&fit=crop" alt="" loading="lazy">
+      <h2>Your Capital Is Waiting.<br><span class="gold">Your Skill Unlocks It.</span></h2>
+      <p>Choose a route, pick an account size, and start your challenge today. No time limit — just your trading.</p>
+      <a class="btn btn-gold btn-lg shimmer" href="challenges.html">Get Funded Now →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <!-- logo-light: footer is dark navy -->
+      <img src="assets/logo-light.png" alt="NEXTRADE PRIME">
+      <p>A prop trading firm for traders who prove it first. Three routes to funding, up to $200,000 of firm capital, and an 80% profit split.</p>
+    </div>
+    <div><h4>CHALLENGES</h4><ul><li><a href="challenges.html">2-Step Challenge</a></li><li><a href="challenges.html">1-Step Challenge</a></li><li><a href="challenges.html">Instant Funding</a></li><li><a href="challenges.html#rules">Trading Rules</a></li></ul></div>
+    <div><h4>COMPANY</h4><ul><li><a href="index.html#how-it-works">How It Works</a></li><li><a href="index.html#platforms">Platforms</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="login.html">Trader Login</a></li></ul></div>
+    <div><h4>ACCOUNT</h4><ul><li><a href="login.html">Login</a></li><li><a href="signup.html">Create Account</a></li><li><a href="dashboard.html">Demo Dashboard</a></li><li><a href="challenges.html">Get Funded</a></li></ul></div>
+  </div>
+  <div class="footer-bottom container">
+    <p><strong>Risk disclaimer:</strong> Trading foreign exchange, commodities, indices and cryptocurrencies carries a high level of risk and may not be suitable for all traders. Funded accounts offered through NEXTRADE PRIME are simulated evaluation and funded-simulation accounts; no live capital is placed at risk during the evaluation. Past performance does not guarantee future results. Never trade with money you cannot afford to lose.</p>
+    <p>© 2026 NEXTRADE PRIME. All rights reserved. · Market data shown on this site is indicative demo data. · This is a demo front-end; the CRM and payment systems are connected separately.</p>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

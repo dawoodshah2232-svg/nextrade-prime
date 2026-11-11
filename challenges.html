@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Challenges &amp; Pricing — NEXTRADE PRIME</title>
-<meta name="description" content="NEXTRADE PRIME challenges: 2-Step, 1-Step and Instant Funding. Account sizes $10k–$200k, 80% profit split, no time limit. Compare routes and rules.">
+<meta name="description" content="NEXTRADE PRIME challenges: 2-Step, 1-Step and Instant Funding. Account sizes $5k–$200k, up to 80% profit split, no time limit, 100% fee refund. Compare routes and rules.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -18,43 +18,56 @@
 <radialGradient id="gGlow" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#F4DC8A" stop-opacity=".55"/><stop offset="1" stop-color="#C9A227" stop-opacity="0"/></radialGradient>
 </defs></svg>
 
+<div class="top-strip"><div class="container">
+  <span>Unlock up to <b>$200,000</b> in funding</span>
+  <span><b>1:100</b> Leverage</span>
+  <span><b>300+</b> Instruments</span>
+</div></div>
+
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="NEXTRADE PRIME — home"><img src="assets/logo-light.png" alt="NEXTRADE PRIME" height="42"></a>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <nav class="main-nav" aria-label="Main">
-      <a href="challenges.html">Challenges</a>
-      <a href="index.html#how-it-works">How It Works</a>
-      <a href="index.html#platforms">Platforms</a>
+      <a href="index.html">Home</a>
+      <a href="index.html#why">About</a>
+      <a href="index.html#instruments">Instruments</a>
+      <a href="index.html#faq">Support</a>
       <a href="challenges.html#rules">Rules</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
     <div class="header-actions">
       <a class="btn btn-ghost btn-sm" href="login.html">Login</a>
-      <a class="btn btn-gold btn-sm shimmer" href="signup.html">Get Funded</a>
+      <a class="btn btn-gold btn-sm shimmer" href="signup.html">Sign Up</a>
     </div>
   </div>
 </header>
 
-<section class="section" style="padding-top:150px">
+<section class="section" style="padding-top:80px">
   <div class="container">
     <div class="center reveal">
-      <div class="gold-rule"></div>
+      <span class="eyebrow">Challenges &amp; Pricing</span>
       <h2 class="section-title">Choose Your Challenge</h2>
-      <p class="section-sub">Tap an account size on any card — the price, target and loss limits update instantly. One-time fee, no subscription, no time limit.</p>
+      <p class="section-sub">Tap a route tab to compare it, tap an account size on any card — the price, target and loss limits update instantly. One-time fee, no subscription, no time limit, 100% refund when you pass.</p>
+    </div>
+    <div class="tabs reveal" role="tablist" aria-label="Funding routes">
+      <button class="tab-btn route-tab active" data-route-tab="two-step">2-Step Challenge</button>
+      <button class="tab-btn route-tab" data-route-tab="one-step">1-Step Challenge</button>
+      <button class="tab-btn route-tab" data-route-tab="instant">Instant Funding</button>
     </div>
     <div class="routes-grid">
       <article class="route-card tilt reveal" data-route="two-step">
         <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><circle cx="40" cy="40" r="30" stroke="url(#gGold)" stroke-width="2.5"/><circle cx="40" cy="40" r="19" stroke="url(#gGold)" stroke-width="2.5"/><circle cx="40" cy="40" r="8" stroke="url(#gGold)" stroke-width="2.5"/><circle cx="40" cy="40" r="3" fill="url(#gGold)"/></svg></div>
         <h3>2-Step Challenge</h3>
-        <p class="muted">Two phases, proven consistency, then funded.</p>
-        <div class="size-pills"><button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="200000">$200k</button></div>
-        <div class="route-price"><span class="js-price">$349</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <p class="muted">Best balance between flexibility and structure.</p>
+        <div class="size-pills"><button class="size-pill" data-size="5000">$5k</button><button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="150000">$150k</button><button class="size-pill" data-size="200000">$200k</button></div>
+        <div class="route-price"><span class="js-price">$125</span> <small>total · <span class="js-size">$100k</span> account</small></div>
+        <div class="route-breakdown js-breakdown">Phase 1 $10 + Phase 2 $115</div>
         <ul class="route-list">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Phase 1 target <b>&nbsp;<span class="js-target1">7%</span></b>&nbsp;· Phase 2 <b>&nbsp;<span class="js-target2">5%</span></b></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">5%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:100</span></b>&nbsp;· No time limit</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>80% profit split · MT5 &amp; cTrader</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Phase 1 target <b>&nbsp;<span class="js-target1">8%</span></b>&nbsp;· Phase 2 <b>&nbsp;<span class="js-target2">5%</span></b></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">4%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:100</span></b>&nbsp;· Min 3 trading days</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>100% fee refund on passing · 80% split · MT5</li>
         </ul>
         <a class="btn btn-gold" href="signup.html">Start 2-Step →</a>
       </article>
@@ -62,64 +75,73 @@
         <span class="route-tag">MOST POPULAR</span>
         <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M44 8L20 44h14l-4 28 26-38H42l2-26z" fill="url(#gGold)" stroke="#8A6D14" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
         <h3>1-Step Challenge</h3>
-        <p class="muted">One phase, one target — the fastest route to funded.</p>
-        <div class="size-pills"><button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="200000">$200k</button></div>
-        <div class="route-price"><span class="js-price">$399</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <p class="muted">Fastest path to a funded account.</p>
+        <div class="size-pills"><button class="size-pill" data-size="5000">$5k</button><button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="150000">$150k</button><button class="size-pill" data-size="200000">$200k</button></div>
+        <div class="route-price"><span class="js-price">$419</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <div class="route-breakdown js-breakdown">One-time fee</div>
         <ul class="route-list">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Single target <b>&nbsp;<span class="js-target1">8%</span></b>&nbsp;· One phase only</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">4%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:50</span></b>&nbsp;· No time limit</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>80% profit split · MT5 &amp; cTrader</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:50</span></b>&nbsp;· Min 3 trading days</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>100% fee refund on passing · 80% split · MT5</li>
         </ul>
         <a class="btn btn-gold" href="signup.html">Start 1-Step →</a>
       </article>
       <article class="route-card tilt reveal" data-route="instant" data-delay="2">
         <div class="icon3d"><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="40" cy="40" r="37" fill="url(#gGlow)"/><path d="M40 12l6 14 15 2-11 11 3 15-13-8-13 8 3-15L19 28l15-2 6-14z" fill="url(#gGold)" stroke="#8A6D14" stroke-width="1.5" stroke-linejoin="round"/><path d="M22 62h36" stroke="url(#gGold)" stroke-width="3" stroke-linecap="round"/></svg></div>
         <h3>Instant Funding</h3>
-        <p class="muted">No evaluation. Funded from day one.</p>
-        <div class="size-pills"><button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="200000">$200k</button></div>
-        <div class="route-price"><span class="js-price">$599</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <p class="muted">Start earning from day one — no challenge to pass.</p>
+        <div class="size-pills"><button class="size-pill" data-size="5000">$5k</button><button class="size-pill" data-size="10000">$10k</button><button class="size-pill" data-size="25000">$25k</button><button class="size-pill" data-size="50000">$50k</button><button class="size-pill active" data-size="100000">$100k</button><button class="size-pill" data-size="150000">$150k</button><button class="size-pill" data-size="200000">$200k</button></div>
+        <div class="route-price"><span class="js-price">$595</span> <small>one-time · <span class="js-size">$100k</span> account</small></div>
+        <div class="route-breakdown js-breakdown">One-time fee</div>
         <ul class="route-list">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><b><span class="js-target1">8% growth target</span></b></span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">4%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:30</span></b>&nbsp;· No time limit</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>80% profit split · MT5 &amp; cTrader</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:30</span></b>&nbsp;· Min 3 trading days</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>100% fee refund on passing · 80% split · MT5</li>
         </ul>
         <a class="btn btn-gold" href="signup.html">Start Instant →</a>
       </article>
     </div>
 
-    <!-- Comparison table -->
+    <div class="compare-wrap reveal">
+      <div class="compare-head"><h3 id="compare-title">2-Step Challenge — $100k account</h3><span>Tap a route tab above to compare</span></div>
+      <table class="compare-table"><tbody id="compare-body"></tbody></table>
+    </div>
+
+    <!-- 2-Step fee breakdown -->
     <div class="table-wrap reveal">
       <table>
-        <thead><tr><th>Rule</th><th>2-Step Challenge</th><th>1-Step Challenge</th><th>Instant Funding</th></tr></thead>
+        <thead><tr><th>2-Step fee breakdown</th><th>Phase 1</th><th>Phase 2</th><th>Total</th></tr></thead>
         <tbody>
-          <tr><td>Profit target</td><td>7% then 5%</td><td>8% (one phase)</td><td>8% growth target</td></tr>
-          <tr><td>Daily loss limit</td><td>5%</td><td>4%</td><td>4%</td></tr>
-          <tr><td>Maximum loss</td><td>8%</td><td>8%</td><td>8%</td></tr>
-          <tr><td>Leverage</td><td>Up to 1:100</td><td>Up to 1:50</td><td>Up to 1:30</td></tr>
-          <tr><td>Time limit</td><td>None</td><td>None</td><td>None</td></tr>
-          <tr><td>Profit split</td><td>80%</td><td>80%</td><td>80%</td></tr>
-          <tr><td>Account sizes</td><td>$10k – $200k</td><td>$10k – $200k</td><td>$10k – $200k</td></tr>
-          <tr><td>Fee</td><td>One-time, from $49</td><td>One-time, from $59</td><td>One-time, from $99</td></tr>
+          <tr><td>$5k account</td><td>$10</td><td>$10</td><td><strong>$20</strong></td></tr>
+          <tr><td>$10k account</td><td>$10</td><td>$25</td><td><strong>$35</strong></td></tr>
+          <tr><td>$25k account</td><td>$10</td><td>$45</td><td><strong>$55</strong></td></tr>
+          <tr><td>$50k account</td><td>$10</td><td>$75</td><td><strong>$85</strong></td></tr>
+          <tr><td>$100k account</td><td>$10</td><td>$115</td><td><strong>$125</strong></td></tr>
+          <tr><td>$150k account</td><td>$10</td><td>$165</td><td><strong>$175</strong></td></tr>
+          <tr><td>$200k account</td><td>$10</td><td>$215</td><td><strong>$225</strong></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="center muted small" style="margin-top:18px">All prices are demo defaults in <code>assets/script.js</code> (PRICING) — change them in one place.</p>
+    <p class="center muted small" style="margin-top:18px">All prices and rules are demo defaults in <code>assets/script.js</code> (PRICING) — change them in one place.</p>
   </div>
 </section>
 
 <!-- Rules -->
-<section class="section" id="rules" style="background:var(--navy-900)">
+<section class="section" id="rules" style="background:var(--panel)">
   <div class="container split">
     <div class="reveal">
-      <div class="gold-rule"></div>
+      <span class="eyebrow">Trading Rules</span>
       <h2 class="section-title">The Rules, In Plain Words</h2>
       <p class="section-sub">Everything that can end a challenge is on this list. Nothing else will.</p>
       <ul class="check-list">
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Daily loss limit</strong> — lose more than the daily limit in one day and the attempt ends. The limit resets each day.</span></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Maximum loss</strong> — the account may never fall more than 8% below its starting balance.</span></li>
-        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Profit target</strong> — reach the target without breaking a loss limit to pass a phase.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Profit target</strong> — 2-Step: 8% in Phase 1, then 5% in Phase 2. 1-Step: 8% in one phase. Instant: 8% growth target. Reach it without breaking a loss limit to pass.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Daily loss limit — 4%</strong> — lose more than 4% in one day and the attempt ends. The limit resets each day.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Maximum loss — 8%</strong> — the account may never fall more than 8% below its starting balance.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Minimum trading days — 3</strong> — every route needs at least 3 trading days. There is no maximum time limit.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Leverage</strong> — 2-Step 1:100, 1-Step 1:50, Instant 1:30.</span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Fee refund — 100%</strong> — your fee is refunded in full when you pass and become funded.</span></li>
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Allowed</strong> — news trading, EAs, scalping and hedging, within the loss limits.</span></li>
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><strong>Not allowed</strong> — account sharing, copying another trader's account, or exploiting platform errors.</span></li>
       </ul>
@@ -133,7 +155,7 @@
 <section class="section" style="padding-top:0">
   <div class="container">
     <div class="cta-banner reveal">
-      <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=1600&q=80&auto=format&fit=crop" alt="" loading="lazy">
+      <span class="eyebrow">Get Funded</span>
       <h2>Pick a Route. <span class="gold">Start Tonight.</span></h2>
       <p>Your challenge account is issued the moment you sign up. No waiting, no paperwork queue.</p>
       <a class="btn btn-gold btn-lg shimmer" href="signup.html">Create Your Account →</a>
@@ -145,15 +167,15 @@
   <div class="container footer-grid">
     <div>
       <img src="assets/logo-light.png" alt="NEXTRADE PRIME">
-      <p>A prop trading firm for traders who prove it first. Three routes to funding, up to $200,000 of firm capital, and an 80% profit split.</p>
+      <p>A prop trading firm for traders who prove it first. Three routes to funding, up to $200,000 of firm capital, and up to an 80% profit split.</p>
     </div>
     <div><h4>CHALLENGES</h4><ul><li><a href="challenges.html">2-Step Challenge</a></li><li><a href="challenges.html">1-Step Challenge</a></li><li><a href="challenges.html">Instant Funding</a></li><li><a href="challenges.html#rules">Trading Rules</a></li></ul></div>
-    <div><h4>COMPANY</h4><ul><li><a href="index.html#how-it-works">How It Works</a></li><li><a href="index.html#platforms">Platforms</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="login.html">Trader Login</a></li></ul></div>
+    <div><h4>COMPANY</h4><ul><li><a href="index.html#how-it-works">How It Works</a></li><li><a href="index.html#platforms">Platform — MT5</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="login.html">Trader Login</a></li></ul></div>
     <div><h4>ACCOUNT</h4><ul><li><a href="login.html">Login</a></li><li><a href="signup.html">Create Account</a></li><li><a href="dashboard.html">Demo Dashboard</a></li><li><a href="challenges.html">Get Funded</a></li></ul></div>
   </div>
   <div class="footer-bottom container">
-    <p><strong>Risk disclaimer:</strong> Trading foreign exchange, commodities, indices and cryptocurrencies carries a high level of risk and may not be suitable for all traders. Funded accounts offered through NEXTRADE PRIME are simulated evaluation and funded-simulation accounts; no live capital is placed at risk during the evaluation. Past performance does not guarantee future results. Never trade with money you cannot afford to lose.</p>
-    <p>© 2026 NEXTRADE PRIME. All rights reserved. · Market data shown on this site is indicative demo data. · This is a demo front-end; the CRM and payment systems are connected separately.</p>
+    <p><strong>Risk warning:</strong> Trading foreign exchange, commodities, indices, stocks and cryptocurrencies on margin carries a high level of risk and may not be suitable for all traders. All accounts offered by NEXTRADE PRIME are simulated evaluation and funded-simulation accounts in a simulated trading environment — no live capital is placed at risk during the evaluation, and no real trading takes place. NEXTRADE PRIME is not a regulated broker and does not provide investment advice. Past performance does not guarantee future results. Never trade with money you cannot afford to lose. Market data shown on this site is indicative demo data.</p>
+    <p>© 2026 NEXTRADE PRIME. All rights reserved. · This is a demo front-end; the CRM and payment systems are connected separately.</p>
   </div>
 </footer>
 <script src="assets/script.js"></script>

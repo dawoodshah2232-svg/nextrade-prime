@@ -1,45 +1,72 @@
 /* ============================================================
    NEXTRADE PRIME — script.js
    ------------------------------------------------------------
-   PRICING — change every price in ONE place here.
-   Dawood: edit the numbers in PRICING below, no other file.
+   PRICING + RULES — Liberty-style rules, one config.
+   Change every price/rule in ONE place here (PRICING).
+   Account sizes: $5k / $10k / $25k / $50k / $100k / $150k / $200k
+   2-Step: P1 8%, P2 5%, daily 4%, max 8%, min 3 days, 1:100.
+     Fee = Phase 1 $10 flat + Phase 2 fee per size.
+   1-Step: 8%, daily 4%, max 8%, min 3 days, 1:50.
+   Instant: 8%, daily 4%, max 8%, min 3 days, 1:30.
+   All: no time limit, 100% fee refund, up to 80% split.
    ------------------------------------------------------------
    CRM INTEGRATION POINT (for later — no live endpoint yet):
    - Login form:    #login-form   (login.html)
    - Signup form:   #signup-form  (signup.html)
-   - When the CRM is ready, replace the DEMO submit handlers
-     in this file (handleLogin / handleSignup) with a POST to
-     the CRM endpoint. Do NOT invent a CRM URL here.
+   - Replace handleLogin / handleSignup with a POST to the
+     CRM endpoint. Do NOT invent a CRM URL here.
    - Demo session key: localStorage "ntp_demo_session"
    ============================================================ */
 const PRICING = {
-  sizes: [10000, 25000, 50000, 100000, 200000],
+  sizes: [5000, 10000, 25000, 50000, 100000, 150000, 200000],
   routes: {
     "two-step": {
-      name: "2-Step Challenge",
-      prices: { 10000: 49, 25000: 99, 50000: 199, 100000: 349, 200000: 549 },
-      phase1: "7%", phase2: "5%", dailyLoss: "5%", maxLoss: "8%",
-      leverage: "1:100", timeLimit: "No time limit", split: "80%"
+      name: "2-Step Challenge", tag: "EVAL",
+      tagline: "Best balance between flexibility and structure",
+      prices: { 5000: 20, 10000: 35, 25000: 55, 50000: 85, 100000: 125, 150000: 175, 200000: 225 },
+      phase1Fee: 10,
+      phase2Fees: { 5000: 10, 10000: 25, 25000: 45, 50000: 75, 100000: 115, 150000: 165, 200000: 215 },
+      phase1: "8%", phase2: "5%", dailyLoss: "4%", maxLoss: "8%",
+      minDays: 3, leverage: "1:100", timeLimit: "Unlimited", refund: "100%", split: "80%"
     },
     "one-step": {
-      name: "1-Step Challenge",
-      prices: { 10000: 59, 25000: 119, 50000: 229, 100000: 399, 200000: 649 },
+      name: "1-Step Challenge", tag: "FASTEST PATH",
+      tagline: "Fastest path to a funded account",
+      prices: { 5000: 39, 10000: 59, 25000: 129, 50000: 229, 100000: 419, 150000: 649, 200000: 849 },
       phase1: "8%", phase2: "—", dailyLoss: "4%", maxLoss: "8%",
-      leverage: "1:50", timeLimit: "No time limit", split: "80%"
+      minDays: 3, leverage: "1:50", timeLimit: "Unlimited", refund: "100%", split: "80%"
     },
     "instant": {
-      name: "Instant Funding",
-      prices: { 10000: 99, 25000: 199, 50000: 349, 100000: 599, 200000: 999 },
-      phase1: "8% growth target", phase2: "—", dailyLoss: "4%", maxLoss: "8%",
-      leverage: "1:30", timeLimit: "No time limit", split: "80%"
+      name: "Instant Funding", tag: "FASTEST",
+      tagline: "Start earning from day one — no challenge to pass",
+      prices: { 5000: 95, 10000: 155, 25000: 255, 50000: 395, 100000: 595, 150000: 795, 200000: 995 },
+      phase1: "8%", phase2: "—", dailyLoss: "4%", maxLoss: "8%",
+      minDays: 3, leverage: "1:30", timeLimit: "Unlimited", refund: "100%", split: "80%"
     }
   }
 };
 const fmt$ = n => "$" + n.toLocaleString("en-US");
 const fmtSize = n => "$" + (n >= 1000 ? (n / 1000) + "k" : n);
 
-/* ---------- Mobile nav ---------- */
+/* ---------- Live instrument data (indicative demo feed) ---------- */
+const INSTRUMENTS = {
+  "XAU/USD": { price: 4231.40, chg: 0.42, dec: 2, label: "Gold" },
+  "EUR/USD": { price: 1.1642, chg: -0.18, dec: 4, label: "Euro / US Dollar" },
+  "GBP/USD": { price: 1.3187, chg: 0.24, dec: 4, label: "Pound / US Dollar" },
+  "BTC/USD": { price: 97420, chg: 1.12, dec: 0, label: "Bitcoin" },
+  "USD/JPY": { price: 154.32, chg: -0.09, dec: 2, label: "US Dollar / Yen" },
+  "WTI":     { price: 71.84, chg: 0.61, dec: 2, label: "Crude Oil" }
+};
+const PROFILES = {
+  "futures": { title: "Futures & Indices", desc: "US30, NAS100, S&P 500 and index futures — deep liquidity, tight spreads, and clean trend days for disciplined traders.", chips: ["US30", "NAS100", "S&P 500", "GER40", "UK100"] },
+  "forex": { title: "Forex", desc: "Majors and minors around the clock. Trade the pairs you know, with 1:100 leverage on the 2-Step route and no time limit.", chips: ["EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD", "USD/CAD"] },
+  "crypto": { title: "Crypto", desc: "BTC, ETH and the majors — volatile, fast, and always moving. Same loss limits, same discipline, no exceptions.", chips: ["BTC/USD", "ETH/USD", "SOL/USD", "XRP/USD"] },
+  "commodity": { title: "Commodity", desc: "Gold, silver and oil — the markets where patience pays. XAU/USD is the most-traded instrument on NEXTRADE PRIME.", chips: ["XAU/USD", "XAG/USD", "WTI", "Brent"] },
+  "stocks": { title: "Stocks", desc: "Single-name US equities and CFDs on the world's biggest companies — trade the names you follow every day.", chips: ["AAPL", "NVDA", "TSLA", "MSFT", "AMZN"] }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  /* ---------- Mobile nav ---------- */
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".main-nav");
   if (toggle && nav) {
@@ -50,12 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => nav.classList.remove("open")));
   }
 
-  /* ---------- Scroll reveal ---------- */
+  /* ---------- Scroll reveal (fast — never dim on first paint) ---------- */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
-  /* Safety net: never leave a card dim on first paint — reveal anything already in view within 0.6s. */
   setTimeout(() => {
     document.querySelectorAll(".reveal").forEach(el => {
       if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("visible");
@@ -81,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll(".faq-item").forEach(item => {
     const q = item.querySelector(".faq-q"), a = item.querySelector(".faq-a");
+    if (!q || !a) return;
     q.addEventListener("click", () => {
       const open = item.classList.contains("open");
       document.querySelectorAll(".faq-item.open").forEach(o => {
@@ -102,50 +129,138 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ---------- Challenge size selector ---------- */
+  /* ---------- Challenge size selector (route cards) ---------- */
+  let currentSize = 100000, currentRoute = "two-step";
   document.querySelectorAll("[data-route]").forEach(card => {
     const route = PRICING.routes[card.dataset.route];
     if (!route) return;
     const pills = card.querySelectorAll(".size-pill");
     const apply = size => {
-      card.querySelector(".js-price").textContent = fmt$(route.prices[size]);
-      card.querySelector(".js-size").textContent = fmtSize(size);
+      currentSize = size; currentRoute = card.dataset.route;
+      const priceEl = card.querySelector(".js-price"); if (priceEl) priceEl.textContent = fmt$(route.prices[size]);
+      const sizeEl = card.querySelector(".js-size"); if (sizeEl) sizeEl.textContent = fmtSize(size);
       const t1 = card.querySelector(".js-target1"); if (t1) t1.textContent = route.phase1;
       const t2 = card.querySelector(".js-target2"); if (t2) t2.textContent = route.phase2;
       const dl = card.querySelector(".js-daily"); if (dl) dl.textContent = route.dailyLoss;
       const ml = card.querySelector(".js-max"); if (ml) ml.textContent = route.maxLoss;
       const lv = card.querySelector(".js-lev"); if (lv) lv.textContent = route.leverage;
+      const bd = card.querySelector(".js-breakdown");
+      if (bd) bd.textContent = route.phase1Fee ? `Phase 1 ${fmt$(route.phase1Fee)} + Phase 2 ${fmt$(route.phase2Fees[size])}` : "One-time fee";
       pills.forEach(p => p.classList.toggle("active", +p.dataset.size === size));
+      renderCompare(currentRoute, size);
+      renderConfigurator();
     };
     pills.forEach(p => p.addEventListener("click", () => apply(+p.dataset.size)));
-    apply(100000); /* default: $100k */
+    apply(100000);
   });
+
+  /* ---------- Route tabs (comparison table) ---------- */
+  const tabBtns = document.querySelectorAll(".route-tab");
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentRoute = btn.dataset.routeTab;
+      renderCompare(currentRoute, currentSize);
+      renderConfigurator();
+      /* keep the matching route card in sync */
+      document.querySelectorAll("[data-route]").forEach(card => {
+        if (card.dataset.route === currentRoute) {
+          card.querySelectorAll(".size-pill").forEach(p => p.classList.toggle("active", +p.dataset.size === currentSize));
+        }
+      });
+    });
+  });
+  renderCompare("two-step", 100000);
+
+  /* ---------- Configurator (Find Your Fit) ---------- */
+  const cfgRouteBtns = document.querySelectorAll(".cfg-route");
+  cfgRouteBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      cfgRouteBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentRoute = btn.dataset.cfgRoute;
+      renderConfigurator();
+      renderCompare(currentRoute, currentSize);
+    });
+  });
+  const cfgSizeBtns = document.querySelectorAll(".cfg-size");
+  cfgSizeBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      cfgSizeBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentSize = +btn.dataset.cfgSize;
+      renderConfigurator();
+      renderCompare(currentRoute, currentSize);
+    });
+  });
+  renderConfigurator();
+
+  /* ---------- Live price dashboard ---------- */
+  const dashTabs = document.querySelectorAll(".inst-tab");
+  const dashPrice = document.getElementById("inst-price");
+  const dashChg = document.getElementById("inst-chg");
+  const dashLabel = document.getElementById("inst-label");
+  const renderInst = key => {
+    const d = INSTRUMENTS[key];
+    if (!d || !dashPrice) return;
+    dashPrice.textContent = d.price.toLocaleString("en-US", { minimumFractionDigits: d.dec, maximumFractionDigits: d.dec });
+    dashChg.textContent = (d.chg >= 0 ? "▲ +" : "▼ ") + Math.abs(d.chg).toFixed(2) + "%";
+    dashChg.className = d.chg >= 0 ? "up" : "down";
+    if (dashLabel) dashLabel.textContent = d.label + " · " + key;
+    dashTabs.forEach(b => b.classList.toggle("active", b.dataset.inst === key));
+  };
+  dashTabs.forEach(b => b.addEventListener("click", () => renderInst(b.dataset.inst)));
+  renderInst("XAU/USD");
+  /* jitter the dashboard + snapshot every 6s so it feels live */
+  setInterval(() => {
+    Object.keys(INSTRUMENTS).forEach(k => {
+      const d = INSTRUMENTS[k];
+      d.price = d.price * (1 + (Math.random() - 0.5) * 0.0012);
+      d.chg = d.chg + (Math.random() - 0.5) * 0.08;
+    });
+    const active = document.querySelector(".inst-tab.active");
+    if (active) renderInst(active.dataset.inst);
+    renderSnapshot();
+  }, 6000);
+
+  /* ---------- Market snapshot ---------- */
+  renderSnapshot();
+  setInterval(renderSnapshot, 30000);
+
+  /* ---------- Financial profiles tabs ---------- */
+  const profTabs = document.querySelectorAll(".prof-tab");
+  const profTitle = document.getElementById("prof-title");
+  const profDesc = document.getElementById("prof-desc");
+  const profChips = document.getElementById("prof-chips");
+  const renderProfile = key => {
+    const p = PROFILES[key]; if (!p || !profTitle) return;
+    profTitle.textContent = p.title;
+    profDesc.textContent = p.desc;
+    profChips.innerHTML = p.chips.map(c => `<span class="chip">${c}</span>`).join("");
+    profTabs.forEach(b => b.classList.toggle("active", b.dataset.prof === key));
+  };
+  profTabs.forEach(b => b.addEventListener("click", () => renderProfile(b.dataset.prof)));
+  renderProfile("forex");
 
   /* ---------- Ticker (indicative demo feed) ---------- */
   const ticker = document.querySelector(".ticker-track");
   if (ticker) {
-    const base = [
-      ["XAUUSD", 4231.40], ["EURUSD", 1.1642], ["GBPUSD", 1.3187],
-      ["BTCUSD", 97420], ["ETHUSD", 3421], ["US30", 47210],
-      ["NAS100", 24890], ["USDJPY", 154.32], ["GBPJPY", 203.41], ["USOIL", 71.84]
-    ];
     const fmt = (s, p) => p >= 1000 ? p.toLocaleString("en-US", { maximumFractionDigits: 0 })
       : p >= 100 ? p.toFixed(2) : p.toFixed(4);
     const render = () => {
-      const items = base.map(([s, p]) => {
-        const chg = (Math.random() - 0.48) * (p * 0.0012);
-        const np = p + chg, pct = (chg / p * 100);
+      const items = Object.entries(INSTRUMENTS).map(([s, d]) => {
+        const chg = (Math.random() - 0.48) * (d.price * 0.0012);
+        const np = d.price + chg, pct = (chg / d.price * 100);
         const cls = chg >= 0 ? "up" : "down", arrow = chg >= 0 ? "▲" : "▼";
         return `<span class="ticker-item"><span class="sym">${s}</span><b>${fmt(s, np)}</b><span class="${cls}">${arrow} ${Math.abs(pct).toFixed(2)}%</span></span>`;
       }).join("");
-      ticker.innerHTML = items + items; /* duplicate for seamless loop */
+      ticker.innerHTML = items + items;
     };
     render(); setInterval(render, 6000);
   }
 
-  /* ---------- Hero candlestick canvas ---------- */
-  const heroCv = document.getElementById("heroChart");
-  if (heroCv) drawCandles(heroCv, true);
+  /* ---------- Dashboard equity line ---------- */
   const dashCv = document.getElementById("dashChart");
   if (dashCv) drawLine(dashCv);
 
@@ -154,8 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loginForm) loginForm.addEventListener("submit", handleLogin);
   const signupForm = document.getElementById("signup-form");
   if (signupForm) signupForm.addEventListener("submit", handleSignup);
-  const googleBtns = document.querySelectorAll(".btn-google");
-  googleBtns.forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".btn-google").forEach(b => b.addEventListener("click", () => {
     showOk("Google sign-in is a visual demo here. Use the demo account below, or create a demo account with the form.");
   }));
   const logout = document.getElementById("logout-btn");
@@ -163,7 +277,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("ntp_demo_session");
     window.location.href = "index.html";
   });
-  /* Dashboard guard: demo only, no real session exists yet */
   if (document.body.dataset.page === "dashboard") {
     const sess = JSON.parse(localStorage.getItem("ntp_demo_session") || "null");
     const nameEl = document.getElementById("dash-name");
@@ -171,50 +284,66 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/* ---------- Candlestick chart (animated, canvas) ---------- */
-function drawCandles(cv, animate) {
-  const ctx = cv.getContext("2d");
-  let candles = [], price = 100;
-  const seed = () => {
-    candles = [];
-    for (let i = 0; i < 42; i++) {
-      const o = price, drift = (Math.random() - 0.46) * 6;
-      const c = o + drift, h = Math.max(o, c) + Math.random() * 3, l = Math.min(o, c) - Math.random() * 3;
-      candles.push({ o, c, h, l }); price = c;
-    }
-  };
-  const paint = () => {
-    const W = cv.width = cv.clientWidth * 2, H = cv.height = Math.max(360, (cv.clientHeight || 180) * 2);
-    ctx.clearRect(0, 0, W, H);
-    const all = candles.flatMap(k => [k.h, k.l]);
-    const mn = Math.min(...all) - 2, mx = Math.max(...all) + 2;
-    const y = v => H - ((v - mn) / (mx - mn)) * (H - 30) - 15;
-    const bw = W / candles.length;
-    candles.forEach((k, i) => {
-      const x = i * bw + bw / 2, up = k.c >= k.o;
-      ctx.strokeStyle = up ? "#2ECC8F" : "#FF6B6B"; ctx.fillStyle = up ? "#2ECC8F" : "#FF6B6B";
-      ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.moveTo(x, y(k.h)); ctx.lineTo(x, y(k.l)); ctx.stroke();
-      const top = y(Math.max(k.o, k.c)), hgt = Math.max(3, Math.abs(y(k.o) - y(k.c)));
-      ctx.fillRect(x - bw * 0.28, top, bw * 0.56, hgt);
-    });
-    /* last-price line */
-    const last = candles[candles.length - 1].c;
-    ctx.setLineDash([6, 6]); ctx.strokeStyle = "rgba(232,199,102,.7)"; ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.moveTo(0, y(last)); ctx.lineTo(W, y(last)); ctx.stroke();
-    ctx.setLineDash([]);
-  };
-  seed(); paint();
-  if (animate && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    setInterval(() => {
-      const last = candles[candles.length - 1];
-      const o = last.c, drift = (Math.random() - 0.46) * 5;
-      const c = o + drift;
-      candles.push({ o, c, h: Math.max(o, c) + Math.random() * 2, l: Math.min(o, c) - Math.random() * 2 });
-      candles.shift(); paint();
-    }, 1800);
-  }
-  window.addEventListener("resize", paint);
+/* ---------- Comparison table (rendered from PRICING) ---------- */
+function renderCompare(routeKey, size) {
+  const body = document.getElementById("compare-body");
+  if (!body) return;
+  const r = PRICING.routes[routeKey];
+  const fee = r.phase1Fee
+    ? `${fmt$(r.prices[size])} total · Phase 1 ${fmt$(r.phase1Fee)} + Phase 2 ${fmt$(r.phase2Fees[size])}`
+    : `${fmt$(r.prices[size])} one-time`;
+  const target = r.phase2 !== "—" ? `Phase 1 ${r.phase1} · Phase 2 ${r.phase2}` : r.phase1;
+  const rows = [
+    ["Account size", fmtSize(size)],
+    ["Fee", fee],
+    ["Profit target", target],
+    ["Max daily loss", r.dailyLoss],
+    ["Max loss", r.maxLoss],
+    ["Minimum trading days", r.minDays + " days"],
+    ["Time limit", r.timeLimit],
+    ["Leverage", r.leverage],
+    ["Fee refund", r.refund + " on passing"],
+    ["Profit split", "Up to " + r.split]
+  ];
+  body.innerHTML = rows.map(([k, v]) => `<tr><td>${k}</td><td><strong>${v}</strong></td></tr>`).join("");
+  const title = document.getElementById("compare-title");
+  if (title) title.textContent = r.name + " — " + fmtSize(size) + " account";
+}
+
+/* ---------- Configurator (Find Your Fit) ---------- */
+function renderConfigurator() {
+  const out = document.getElementById("cfg-out");
+  if (!out) return;
+  const r = PRICING.routes[document.querySelector(".cfg-route.active")?.dataset.cfgRoute || "two-step"];
+  const size = +document.querySelector(".cfg-size.active")?.dataset.cfgSize || 100000;
+  const target = r.phase2 !== "—" ? `Phase 1 ${r.phase1} · Phase 2 ${r.phase2}` : r.phase1 + " (one phase)";
+  const feeLine = r.phase1Fee
+    ? `${fmt$(r.prices[size])} total — Phase 1 ${fmt$(r.phase1Fee)} + Phase 2 ${fmt$(r.phase2Fees[size])}`
+    : `${fmt$(r.prices[size])} one-time`;
+  out.innerHTML = `
+    <div class="cfg-row"><span>Route</span><strong>${r.name}</strong></div>
+    <div class="cfg-row"><span>Account size</span><strong>${fmtSize(size)}</strong></div>
+    <div class="cfg-row"><span>Fee</span><strong>${feeLine}</strong></div>
+    <div class="cfg-row"><span>Profit target</span><strong>${target}</strong></div>
+    <div class="cfg-row"><span>Daily loss / Max loss</span><strong>${r.dailyLoss} / ${r.maxLoss}</strong></div>
+    <div class="cfg-row"><span>Minimum trading days</span><strong>${r.minDays} days</strong></div>
+    <div class="cfg-row"><span>Leverage</span><strong>${r.leverage}</strong></div>
+    <div class="cfg-row"><span>Profit split</span><strong>Up to ${r.split}</strong></div>
+    <a class="btn btn-gold btn-lg" style="width:100%;margin-top:18px" href="signup.html">Start ${r.name} — ${fmt$(r.prices[size])} →</a>`;
+}
+
+/* ---------- Market snapshot ---------- */
+function renderSnapshot() {
+  const list = document.getElementById("snap-list");
+  const ts = document.getElementById("snap-time");
+  if (ts) ts.textContent = "LIVE · " + new Date().toLocaleString("en-GB", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  if (!list) return;
+  list.innerHTML = Object.entries(INSTRUMENTS).map(([s, d]) => {
+    const cls = d.chg >= 0 ? "up" : "down";
+    const arrow = d.chg >= 0 ? "▲" : "▼";
+    const price = d.price.toLocaleString("en-US", { minimumFractionDigits: d.dec, maximumFractionDigits: d.dec });
+    return `<li><span class="snap-sym">${s}</span><span class="snap-price">${price}</span><span class="${cls}">${arrow} ${Math.abs(d.chg).toFixed(2)}%</span></li>`;
+  }).join("");
 }
 
 /* ---------- Dashboard equity line ---------- */
@@ -265,7 +394,6 @@ function handleLogin(ev) {
   const pass = document.getElementById("login-password").value;
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr("Please enter a valid email address.");
   if (pass.length < 6) return showErr("Password must be at least 6 characters.");
-  /* DEMO ONLY: any valid email + 6-char password opens the demo dashboard. */
   showOk("Demo sign-in successful — opening your demo dashboard…");
   setTimeout(() => demoLogin(email.split("@")[0].replace(/[._]/g, " "), email), 700);
 }

@@ -55,6 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  /* Safety net: never leave a card dim on first paint — reveal anything already in view within 0.6s. */
+  setTimeout(() => {
+    document.querySelectorAll(".reveal").forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("visible");
+    });
+  }, 600);
 
   /* ---------- Animated counters ---------- */
   const cio = new IntersectionObserver(entries => {
@@ -178,7 +184,7 @@ function drawCandles(cv, animate) {
     }
   };
   const paint = () => {
-    const W = cv.width = cv.clientWidth * 2, H = cv.height = 360;
+    const W = cv.width = cv.clientWidth * 2, H = cv.height = Math.max(360, (cv.clientHeight || 180) * 2);
     ctx.clearRect(0, 0, W, H);
     const all = candles.flatMap(k => [k.h, k.l]);
     const mn = Math.min(...all) - 2, mx = Math.max(...all) + 2;
@@ -215,7 +221,7 @@ function drawCandles(cv, animate) {
 function drawLine(cv) {
   const ctx = cv.getContext("2d");
   const paint = () => {
-    const W = cv.width = cv.clientWidth * 2, H = cv.height = 360;
+    const W = cv.width = cv.clientWidth * 2, H = cv.height = Math.max(360, (cv.clientHeight || 180) * 2);
     ctx.clearRect(0, 0, W, H);
     const pts = [100000, 100420, 100180, 101050, 100760, 101980, 102640, 102310, 103480, 104020, 103760, 104320];
     const mn = 99800, mx = 105000;

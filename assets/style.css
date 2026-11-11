@@ -77,7 +77,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.12;letter
 .hero-card .chart-wrap{position:relative;background:linear-gradient(180deg,#0A1633,#081226);padding:18px}
 .hero-card .chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.9rem;color:var(--muted)}
 .hero-card .chart-head b{color:var(--green);font-size:1.05rem}
-#heroChart,#dashChart{width:100%;height:180px;display:block}
+#heroChart{width:100%;height:180px;display:block}
+#dashChart{width:100%;height:340px;min-height:340px;flex:1;display:block}
 .hero-badge{position:absolute;top:16px;left:16px;z-index:3;background:rgba(5,11,24,.8);border:1px solid var(--line);color:var(--gold-light);font-weight:700;font-size:.8rem;letter-spacing:.12em;padding:8px 14px;border-radius:999px;backdrop-filter:blur(6px)}
 .ticker{position:relative;z-index:2;margin-top:64px;border-top:1px solid rgba(201,162,39,.25);border-bottom:1px solid rgba(201,162,39,.25);background:rgba(5,11,24,.85);backdrop-filter:blur(8px);overflow:hidden}
 .ticker-track{display:flex;gap:0;width:max-content;animation:tick 38s linear infinite;padding:12px 0}
@@ -112,7 +113,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.12;letter
 .route-price{font-family:var(--font-display);font-size:2.6rem;color:var(--gold-light);line-height:1}
 .route-price small{font-size:.95rem;color:var(--muted);font-family:var(--font-ui)}
 .route-list{list-style:none;margin:22px 0;display:grid;gap:11px;flex:1}
-.route-list li{display:flex;gap:10px;align-items:flex-start;color:#D7E0F2;font-size:.96rem}
+.route-list li{display:flex;gap:10px;align-items:flex-start;justify-content:flex-start;text-align:left;color:#D7E0F2;font-size:.96rem}
+.route-list li>span{flex:1;min-width:0}
 .route-list svg{flex-shrink:0;margin-top:3px}
 .size-pills{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
 .size-pill{border:1px solid rgba(255,255,255,.22);color:#D7E0F2;border-radius:999px;padding:7px 14px;font-size:.86rem;font-weight:700;transition:all .2s}
@@ -231,6 +233,7 @@ tr:last-child td{border-bottom:0}
 .dash-card .delta{font-size:.88rem;color:var(--green);font-weight:700}
 .dash-card .delta.neg{color:var(--red)}
 .dash-main{display:grid;grid-template-columns:1.7fr 1fr;gap:18px}
+.dash-main>.dash-card{display:flex;flex-direction:column}
 .meter{height:12px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden;margin:14px 0 8px}
 .meter-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#2ECC8F,#E8C766)}
 .meter-fill.warn{background:linear-gradient(90deg,#E8C766,#FF9F43)}
@@ -241,11 +244,12 @@ tr:last-child td{border-bottom:0}
 .progress-fill{height:100%;background:linear-gradient(90deg,#E8C766,#C9A227);border-radius:99px}
 
 /* ---------- Reveal / motion ---------- */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+/* First paint must never look dim/broken: start at 0.55 opacity, fade in ≤0.6s total. */
+.reveal{opacity:.55;transform:translateY(12px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
 .reveal.visible{opacity:1;transform:none}
-.reveal[data-delay="1"]{transition-delay:.1s}
-.reveal[data-delay="2"]{transition-delay:.2s}
-.reveal[data-delay="3"]{transition-delay:.3s}
+.reveal[data-delay="1"]{transition-delay:.05s}
+.reveal[data-delay="2"]{transition-delay:.1s}
+.reveal[data-delay="3"]{transition-delay:.15s}
 .shimmer{position:relative;overflow:hidden}
 .shimmer::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%);transform:translateX(-120%);animation:shine 4.5s ease-in-out infinite;pointer-events:none}
 @keyframes shine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}

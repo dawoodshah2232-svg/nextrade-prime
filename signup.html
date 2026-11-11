@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account — NEXTRADE PRIME</title>
+<meta name="description" content="Create your NEXTRADE PRIME account and start your funding challenge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/logo-light.png">
+</head>
+<body>
+<!-- CRM INTEGRATION POINT: form id="signup-form". When the CRM is ready, replace
+     handleSignup() in assets/script.js with a POST to the CRM endpoint.
+     No CRM URL is invented here. -->
+<div class="auth-page">
+  <div class="auth-visual">
+    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1400&q=80&auto=format&fit=crop" alt="Trader at a multi-screen desk" loading="lazy">
+    <div class="auth-visual-text">
+      <h2>Your funded account starts here.</h2>
+      <p>One account, three routes to funding, up to $200,000 of firm capital — and an 80% profit split from day one funded.</p>
+    </div>
+  </div>
+  <div class="auth-form-side">
+    <a class="brand" href="index.html" aria-label="NEXTRADE PRIME — home"><img src="assets/logo-light.png" alt="NEXTRADE PRIME"></a>
+    <h1>Create your account</h1>
+    <p class="sub">Free to create. Pay only when you start a challenge.</p>
+    <form class="auth-form" id="signup-form" novalidate>
+      <div class="form-error" id="form-error" role="alert"></div>
+      <div class="form-ok" id="form-ok" role="status"></div>
+      <div class="field">
+        <label for="signup-name">Full name</label>
+        <input type="text" id="signup-name" placeholder="Your full name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="signup-email">Email address</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" required>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" placeholder="6+ characters" autocomplete="new-password" required>
+        </div>
+        <div class="field">
+          <label for="signup-plan">First challenge</label>
+          <select id="signup-plan">
+            <option value="2-Step Challenge — $100k">2-Step — $100k</option>
+            <option value="1-Step Challenge — $100k">1-Step — $100k</option>
+            <option value="Instant Funding — $100k">Instant Funding — $100k</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-gold btn-lg shimmer" type="submit">Create Account →</button>
+      <div class="divider">or continue with</div>
+      <button class="btn-google" type="button">
+        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.5 6.1 29.5 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3l5.7-5.7C34.5 6.1 29.5 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C36.9 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
+        Continue with Google
+      </button>
+      <p class="form-note">By creating an account you agree to the trading rules on the <a href="challenges.html#rules">Challenges</a> page. Trading involves risk — see the risk disclaimer in the footer.</p>
+      <p class="form-note center">Already have an account? <a href="login.html">Log in →</a></p>
+    </form>
+    <div class="demo-box">
+      <b>DEMO — no real account is created.</b><br>
+      This form opens the demo dashboard. The real CRM will replace this step later.
+    </div>
+    <p class="form-note center" style="margin-top:18px"><a href="index.html">← Back to home</a></p>
+  </div>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

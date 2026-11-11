@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trader Dashboard — NEXTRADE PRIME</title>
+<meta name="description" content="NEXTRADE PRIME demo trader dashboard: balance, drawdown, challenge progress and payouts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/logo-light.png">
+</head>
+<body data-page="dashboard">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4DC8A"/><stop offset=".5" stop-color="#C9A227"/><stop offset="1" stop-color="#8A6D14"/></linearGradient>
+<radialGradient id="gGlow" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#F4DC8A" stop-opacity=".55"/><stop offset="1" stop-color="#C9A227" stop-opacity="0"/></radialGradient>
+</defs></svg>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="NEXTRADE PRIME — home"><img src="assets/logo-light.png" alt="NEXTRADE PRIME" height="42"></a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Main">
+      <a href="challenges.html">Challenges</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="index.html#platforms">Platforms</a>
+      <a href="challenges.html#rules">Rules</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-sm" id="logout-btn" type="button">Log Out</button>
+      <a class="btn btn-gold btn-sm shimmer" href="challenges.html">New Challenge</a>
+    </div>
+  </div>
+</header>
+
+<main class="dash">
+  <div class="container">
+    <div class="dash-head">
+      <div>
+        <span class="demo-pill">● DEMO DASHBOARD — SIMULATED DATA ONLY</span>
+        <h1 style="margin-top:14px">Welcome back, <span id="dash-name">Trader</span></h1>
+        <p class="muted">Your $100k 2-Step Challenge · Phase 1 · No time limit</p>
+      </div>
+      <a class="btn btn-gold" href="challenges.html">Buy Another Challenge →</a>
+    </div>
+
+    <div class="dash-grid">
+      <div class="dash-card reveal"><div class="label">ACCOUNT BALANCE</div><div class="value">$104,320.50</div><div class="delta">▲ +4.32% · target 7%</div></div>
+      <div class="dash-card reveal" data-delay="1"><div class="label">TODAY'S PROFIT / LOSS</div><div class="value" style="color:#2ECC8F">+$1,180.00</div><div class="delta">Daily limit: −$5,000</div></div>
+      <div class="dash-card reveal" data-delay="2"><div class="label">MAX DRAWDOWN USED</div><div class="value">1.9%</div><div class="delta">Limit: 8% · $8,000</div></div>
+      <div class="dash-card reveal" data-delay="3"><div class="label">PAYOUT AVAILABLE (DEMO)</div><div class="value">$0.00</div><div class="delta" style="color:#E8C766">Payouts open once funded</div></div>
+    </div>
+
+    <div class="dash-main">
+      <div class="dash-card reveal">
+        <div class="label">EQUITY CURVE — PHASE 1</div>
+        <canvas id="dashChart" style="margin-top:14px" aria-label="Demo equity curve chart"></canvas>
+        <ul class="dash-list">
+          <li><span>Starting balance</span><span>$100,000.00</span></li>
+          <li><span>Phase 1 target (7%)</span><span>$107,000.00</span></li>
+          <li><span>Daily loss limit (5%)</span><span>−$5,000.00 / day</span></li>
+          <li><span>Max loss limit (8%)</span><span>$92,000.00 floor</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="dash-card reveal" data-delay="1">
+          <div class="label">PHASE 1 PROGRESS</div>
+          <div class="value" style="font-size:1.5rem">62% to target</div>
+          <div class="progress"><div class="progress-fill" style="width:62%"></div></div>
+          <p class="muted small" style="margin-top:12px">$4,320.50 of $7,000.00 target reached. No time limit — trade at your pace.</p>
+        </div>
+        <div class="dash-card reveal" data-delay="2" style="margin-top:18px">
+          <div class="label">DRAWDOWN METER</div>
+          <div class="value" style="font-size:1.5rem">1.9% used</div>
+          <div class="meter"><div class="meter-fill" style="width:24%"></div></div>
+          <p class="muted small">Daily loss used today: 0.0% · Max drawdown used: 1.9% of 8%.</p>
+        </div>
+        <div class="dash-card reveal" data-delay="3" style="margin-top:18px">
+          <div class="label">OPEN CHALLENGE</div>
+          <div class="value" style="font-size:1.4rem">2-Step · $100k</div>
+          <p class="muted small" style="margin-top:8px">Platform: MT5 · Leverage 1:100<br>Started: demo date · Status: <b style="color:#2ECC8F">Active</b></p>
+          <a class="btn btn-ghost btn-sm" style="margin-top:14px" href="challenges.html">View Challenge Rules →</a>
+        </div>
+      </div>
+    </div>
+    <p class="muted small" style="margin-top:22px">Demo dashboard: every number on this page is fixed sample data for layout only. Real balances, drawdown and payouts will come from the CRM once it is connected.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <img src="assets/logo-light.png" alt="NEXTRADE PRIME">
+      <p>A prop trading firm for traders who prove it first. Three routes to funding, up to $200,000 of firm capital, and an 80% profit split.</p>
+    </div>
+    <div><h4>CHALLENGES</h4><ul><li><a href="challenges.html">2-Step Challenge</a></li><li><a href="challenges.html">1-Step Challenge</a></li><li><a href="challenges.html">Instant Funding</a></li><li><a href="challenges.html#rules">Trading Rules</a></li></ul></div>
+    <div><h4>COMPANY</h4><ul><li><a href="index.html#how-it-works">How It Works</a></li><li><a href="index.html#platforms">Platforms</a></li><li><a href="index.html#faq">FAQ</a></li><li><a href="login.html">Trader Login</a></li></ul></div>
+    <div><h4>ACCOUNT</h4><ul><li><a href="login.html">Login</a></li><li><a href="signup.html">Create Account</a></li><li><a href="dashboard.html">Demo Dashboard</a></li><li><a href="challenges.html">Get Funded</a></li></ul></div>
+  </div>
+  <div class="footer-bottom container">
+    <p><strong>Risk disclaimer:</strong> Trading foreign exchange, commodities, indices and cryptocurrencies carries a high level of risk and may not be suitable for all traders. Funded accounts offered through NEXTRADE PRIME are simulated evaluation and funded-simulation accounts; no live capital is placed at risk during the evaluation. Past performance does not guarantee future results. Never trade with money you cannot afford to lose.</p>
+    <p>© 2026 NEXTRADE PRIME. All rights reserved. · Market data shown on this site is indicative demo data. · This is a demo front-end; the CRM and payment systems are connected separately.</p>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+</body>
+</html>

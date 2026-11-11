@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80&auto=format&fit=crop">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80&auto=format&fit=crop">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" href="assets/logo-light.png">
 </head>
@@ -66,13 +68,14 @@
       </div>
     </div>
     <div class="hero-collage" aria-label="Traders working with live market charts">
-      <img class="collage-photo collage-left" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80&auto=format&fit=crop" alt="Candlestick chart on a trading screen, black and white" loading="lazy">
-      <img class="collage-photo collage-right" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80&auto=format&fit=crop" alt="Traders lit by their trading screens" loading="lazy">
+      <img class="collage-photo collage-left" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80&auto=format&fit=crop" alt="Candlestick chart on a trading screen, black and white" loading="eager" fetchpriority="high">
+      <img class="collage-photo collage-right" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80&auto=format&fit=crop" alt="Traders lit by their trading screens" loading="eager" fetchpriority="high">
+      <div class="collage-seam" aria-hidden="true"></div>
       <div class="collage-divider" aria-hidden="true">N|P</div>
       <div class="glass-card glass-1">
         <div class="gc-label">XAU/USD · TODAY</div>
-        <div class="gc-value">$4,231.40</div>
-        <div class="gc-sub">▲ +0.42%</div>
+        <div class="gc-value" id="hero-xau-value">$4,231.40</div>
+        <div class="gc-sub" id="hero-xau-chg">▲ +0.42%</div>
       </div>
       <div class="glass-card glass-2">
         <div class="gc-label">PROFIT SPLIT</div>
@@ -128,7 +131,7 @@
     <div class="center reveal">
       <span class="eyebrow">Funded at Your Pace</span>
       <h2 class="section-title">Three Routes. One Destination: Funded.</h2>
-      <p class="section-sub">Pick a route, pick an account size — the fee, target and loss limits update instantly. Every route has no time limit and a 100% fee refund when you pass.</p>
+      <p class="section-sub">Pick a route, pick an account size — the fee, target and loss limits update instantly. Every route has no time limit. Challenge fees are refunded 100% when you pass.</p>
     </div>
     <div class="tabs reveal" role="tablist" aria-label="Funding routes">
       <button class="tab-btn route-tab active" data-route-tab="two-step">2-Step Challenge</button>
@@ -184,7 +187,7 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span><b><span class="js-target1">8% growth target</span></b></span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Daily loss <b>&nbsp;<span class="js-daily">4%</span></b>&nbsp;· Max loss <b>&nbsp;<span class="js-max">8%</span></b></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>Leverage <b>&nbsp;<span class="js-lev">1:30</span></b>&nbsp;· Min 3 trading days</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>100% fee refund on passing · 80% split</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg>80% profit split · MT5 · Funded from day one</li>
         </ul>
         <a class="btn btn-gold" href="challenges.html">Choose Instant →</a>
       </article>
@@ -193,7 +196,7 @@
       <div class="compare-head"><h3 id="compare-title">2-Step Challenge — $100k account</h3><span>Tap a route tab above to compare</span></div>
       <table class="compare-table"><tbody id="compare-body"></tbody></table>
     </div>
-    <p class="center muted small" style="margin-top:26px">Every price and rule lives in one config object at the top of <code>assets/script.js</code> (PRICING).</p>
+    <!-- Prices and rules live in the PRICING config at the top of assets/script.js — change them in one place. -->
   </div>
 </section>
 
@@ -314,7 +317,15 @@
           <button class="cfg-btn cfg-size" data-cfg-size="150000">$150k</button>
           <button class="cfg-btn cfg-size" data-cfg-size="200000">$200k</button>
         </div>
-        <p class="muted small" style="margin-top:22px">2-Step is split per phase — Phase 1 is $10 on every size, Phase 2 depends on the account. 1-Step and Instant are one-time fees. All fees are refunded 100% when you pass.</p>
+        <p class="muted small" style="margin-top:22px">2-Step is split per phase — Phase 1 is $10 on every size, Phase 2 depends on the account. 1-Step and Instant are one-time fees. 2-Step and 1-Step fees are refunded 100% when you pass.</p>
+        <div class="cfg-included">
+          <div class="cfg-label" style="margin-top:24px">INCLUDED IN EVERY ROUTE</div>
+          <ul class="check-list" style="margin:0">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span>No time limit — the target waits for you</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span>Up to 80% profit split, on MT5</span></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ECC8F" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg><span>Live dashboard — balance, drawdown, payouts</span></li>
+          </ul>
+        </div>
       </div>
       <div class="cfg-out reveal" data-delay="1">
         <h3>Your Challenge</h3>
@@ -388,7 +399,7 @@
 <section class="section" id="why">
   <div class="container split">
     <div class="img-frame reveal">
-      <img class="ph" src="https://images.unsplash.com/photo-1605792657660-596af9009e82?w=1400&q=80&auto=format&fit=crop" alt="A trader at his desk analysing live charts on a laptop" loading="lazy">
+      <img class="ph" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1400&q=80&auto=format&fit=crop" alt="Traders working at their desks with live market charts on screen" loading="lazy">
     </div>
     <div class="reveal" data-delay="1">
       <span class="eyebrow">Why NexTrade Prime</span>
@@ -447,7 +458,7 @@
       <h2>Your Capital Is Waiting.<br><span class="gold">Your Skill Unlocks It.</span></h2>
       <p>Choose a route, pick an account size, and start your challenge today. No time limit — just your trading.</p>
       <a class="btn btn-gold btn-lg shimmer" href="challenges.html">Get Funded Now →</a>
-      <p class="muted small" style="margin:22px auto 0">From $20 · 2-Step from $20 · 1-Step from $39 · Instant from $95 · 100% fee refund on passing</p>
+      <p class="muted small" style="margin:22px auto 0">From $20 · 2-Step from $20 · 1-Step from $39 · Instant from $95 · Challenge fees refunded 100% on passing</p>
     </div>
   </div>
 </section>

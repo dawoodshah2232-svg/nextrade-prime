@@ -8,7 +8,9 @@
      Fee = Phase 1 $10 flat + Phase 2 fee per size.
    1-Step: 8%, daily 4%, max 8%, min 3 days, 1:50.
    Instant: 8%, daily 4%, max 8%, min 3 days, 1:30.
-   All: no time limit, 100% fee refund, up to 80% split.
+   All: no time limit, up to 80% split.
+   2-Step/1-Step: 100% fee refund on passing.
+   Instant: NO refund — there is no challenge to pass.
    ------------------------------------------------------------
    CRM INTEGRATION POINT (for later — no live endpoint yet):
    - Login form:    #login-form   (login.html)
@@ -40,8 +42,8 @@ const PRICING = {
       name: "Instant Funding", tag: "FASTEST",
       tagline: "Start earning from day one — no challenge to pass",
       prices: { 5000: 95, 10000: 155, 25000: 255, 50000: 395, 100000: 595, 150000: 795, 200000: 995 },
-      phase1: "8%", phase2: "—", dailyLoss: "4%", maxLoss: "8%",
-      minDays: 3, leverage: "1:30", timeLimit: "Unlimited", refund: "100%", split: "80%"
+      phase1: "8%", phase1Label: "8% growth target", phase2: "—", dailyLoss: "4%", maxLoss: "8%",
+      minDays: 3, leverage: "1:30", timeLimit: "Unlimited", refund: null, split: "80%"
     }
   }
 };
@@ -139,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentSize = size; currentRoute = card.dataset.route;
       const priceEl = card.querySelector(".js-price"); if (priceEl) priceEl.textContent = fmt$(route.prices[size]);
       const sizeEl = card.querySelector(".js-size"); if (sizeEl) sizeEl.textContent = fmtSize(size);
-      const t1 = card.querySelector(".js-target1"); if (t1) t1.textContent = route.phase1;
+      const t1 = card.querySelector(".js-target1"); if (t1) t1.textContent = route.phase1Label || route.phase1;
       const t2 = card.querySelector(".js-target2"); if (t2) t2.textContent = route.phase2;
       const dl = card.querySelector(".js-daily"); if (dl) dl.textContent = route.dailyLoss;
       const ml = card.querySelector(".js-max"); if (ml) ml.textContent = route.maxLoss;
@@ -212,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   dashTabs.forEach(b => b.addEventListener("click", () => renderInst(b.dataset.inst)));
   renderInst("XAU/USD");
+  updateHeroXau();
   /* jitter the dashboard + snapshot every 6s so it feels live */
   setInterval(() => {
     Object.keys(INSTRUMENTS).forEach(k => {
@@ -221,10 +224,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const active = document.querySelector(".inst-tab.active");
     if (active) renderInst(active.dataset.inst);
+    updateHeroXau();
     renderSnapshot();
   }, 6000);
 
-  /* ---------- Market snapshot ---------- */
+  /* ---------- Hero XAU glass card — same live source as ticker/dashboard ---------- */
+function updateHeroXau() {
+  const d = INSTRUMENTS["XAU/USD"];
+  const v = document.getElementById("hero-xau-value");
+  const c = document.getElementById("hero-xau-chg");
+  if (!d || !v) return;
+  v.textContent = "$" + d.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (c) {
+    c.textContent = (d.chg >= 0 ? "▲ +" : "▼ ") + Math.abs(d.chg).toFixed(2) + "%";
+    c.style.color = d.chg >= 0 ? "var(--green)" : "var(--red)";
+  }
+}
+
+/* ---------- Market snapshot ---------- */
   renderSnapshot();
   setInterval(renderSnapshot, 30000);
 
@@ -292,7 +309,7 @@ function renderCompare(routeKey, size) {
   const fee = r.phase1Fee
     ? `${fmt$(r.prices[size])} total · Phase 1 ${fmt$(r.phase1Fee)} + Phase 2 ${fmt$(r.phase2Fees[size])}`
     : `${fmt$(r.prices[size])} one-time`;
-  const target = r.phase2 !== "—" ? `Phase 1 ${r.phase1} · Phase 2 ${r.phase2}` : r.phase1;
+  const target = r.phase2 !== "—" ? `Phase 1 ${r.phase1} · Phase 2 ${r.phase2}` : (r.phase1Label || r.phase1);
   const rows = [
     ["Account size", fmtSize(size)],
     ["Fee", fee],
@@ -302,7 +319,7 @@ function renderCompare(routeKey, size) {
     ["Minimum trading days", r.minDays + " days"],
     ["Time limit", r.timeLimit],
     ["Leverage", r.leverage],
-    ["Fee refund", r.refund + " on passing"],
+    ...(r.refund ? [["Fee refund", r.refund + " on passing"]] : []),
     ["Profit split", "Up to " + r.split]
   ];
   body.innerHTML = rows.map(([k, v]) => `<tr><td>${k}</td><td><strong>${v}</strong></td></tr>`).join("");
@@ -316,7 +333,7 @@ function renderConfigurator() {
   if (!out) return;
   const r = PRICING.routes[document.querySelector(".cfg-route.active")?.dataset.cfgRoute || "two-step"];
   const size = +document.querySelector(".cfg-size.active")?.dataset.cfgSize || 100000;
-  const target = r.phase2 !== "—" ? `Phase 1 ${r.phase1} · Phase 2 ${r.phase2}` : r.phase1 + " (one phase)";
+  const target = r.phase2 !== "—" ? `Phase 1 ${r.phase1} · Phase 2 ${r.phase2}` : (r.phase1Label || (r.phase1 + " (one phase)"));
   const feeLine = r.phase1Fee
     ? `${fmt$(r.prices[size])} total — Phase 1 ${fmt$(r.phase1Fee)} + Phase 2 ${fmt$(r.phase2Fees[size])}`
     : `${fmt$(r.prices[size])} one-time`;
